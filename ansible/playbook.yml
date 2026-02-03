@@ -1,0 +1,12 @@
+---
+# playbook.yml
+- hosts: local
+  become: yes
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Install web server
+      apt:
+        name: "{{ web_package }}"
+        state: present
+  

@@ -1,0 +1,3 @@
+---
+# vars.yml
+web_package: nginx

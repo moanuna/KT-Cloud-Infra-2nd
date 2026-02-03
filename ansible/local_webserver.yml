@@ -1,0 +1,22 @@
+---
+- name: Local Web Server Setup
+  hosts: webservers
+  become: yes
+  vars:
+    web_root: /var/www/html
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Ensure nginx running
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Deploy index.html
+      copy:
+        content: "<h1>Hello form Ansible!</h1>"
+        dest: "{{ web_root }}/index.html"
