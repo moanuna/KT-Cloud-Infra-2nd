@@ -1,0 +1,5 @@
+---
+roles:
+- name: geerlingguy.nginx
+- name: geerlingguy.mysql
+- name: geerlingguy.php
