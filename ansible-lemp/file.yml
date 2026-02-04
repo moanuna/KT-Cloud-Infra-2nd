@@ -1,0 +1,47 @@
+---
+- name: "File Module"
+  hosts: local
+  become: yes
+  tasks:
+    - name: "Mode 755"
+      file:
+        path: "/home/ubuntu/tmp"
+        mode: 0755
+        recurse: true
+
+    - name: "create test file"
+      file:
+        path: "/home/ubuntu/tmp/a"
+        state: touch      
+
+    - name: "copy and mode 755"
+      copy:
+        src: "/home/ubuntu/tmp/a"
+        dest: "/home/ubuntu/tmp/file-a"
+        mode: 0755
+        remote_src: yes 
+
+    - name: "link file-a"
+      file:
+        src: "/home/ubuntu/tmp/a"
+        dest: "/home/ubuntu/tmp/b"
+        state: link
+        owner: "ubuntu"
+        group: "ubuntu"
+      become: true
+    
+    - name: "delete file-a"
+      file:
+        path: "/home/ubuntu/tmp/a"
+        state: absent
+
+    - name: "make directory dirA"
+      file:
+        path: "home/ubuntu/tmp/dirA"
+        state: directory
+
+    - name: "touch file"
+      file:
+        path: "home/ubuntu/tmp/c"
+        state: touch
+

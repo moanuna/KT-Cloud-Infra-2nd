@@ -1,0 +1,8 @@
+---
+- name: Gathering fact
+  hosts: aws
+  become: true
+  tasks:
+    - name: debug facts
+      debug:
+        msg: "{{ ansible_user }} @ {{ ansible_host }}"
