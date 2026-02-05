@@ -1,0 +1,48 @@
+---
+- name: Install Nginx, MySQL, PHP packages
+  apt:
+    name:
+      - nginx
+      - mysql-server
+      - php-fpm
+      - php-mysql
+    state: present
+    update_cache: yes
+
+- name: Ensure nginx is running
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Ensure PHP-FPM is running
+  service:
+    name: php8.3-fpm
+    state: started
+    enabled: yes
+
+- name: Deploy PHP index file using template
+  template:
+    src: index.php.j2
+    dest: /var/www/html/index.php
+    owner: www-data
+    group: www-data
+    mode: '0644'
+  notify:
+    - Reload nginx
+
+- name: Configure PHP settings
+  lineinfile:
+    path: /etc/php/8.3/fpm/php.ini
+    regexp: '^upload_max_filesize'
+    line: "upload_max_filesize = {{ php_upload_max_filesize }}"
+  notify:
+    - Reload nginx
+
+- name: Configure post_max_size in php.ini
+  lineinfile:
+    path: /etc/php/8.3/fpm/php.ini
+    regexp: '^post_max_size'
+    line: "post_max_size = {{ php_post_max_size }}"
+  notify:
+    - Reload nginx

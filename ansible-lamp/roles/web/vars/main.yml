@@ -1,0 +1,3 @@
+custom_message: "Ansible makes automation easy!"
+php_upload_max_filesize: "16M"
+php_post_max_size: "16M"

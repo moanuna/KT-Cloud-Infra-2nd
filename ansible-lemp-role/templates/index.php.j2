@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Welcome to {{ ansible_hostname }}!</title>
+	</head>
+	<body style="font-family:Arial; margin:40px;">
+		<h1>Ansible Managed LEMP Server</h1>
+		
+		<p><b>Hostname:</b> {{ ansible_hostname }}</p>
+		<p><b>Managed by:</b> Ansible {{ ansible_version.full }}</p>
+		
+		<hr>
+		<h2>Custom Message</h2>
+		<p style="font-size: 18px; color: #336699;">
+			{{ custom_message }}
+		</p>
+		
+		<hr>
+		<h2>PHP Info</h2>
+		<? php phpinfo(); ?>
+	</body>
+</html>

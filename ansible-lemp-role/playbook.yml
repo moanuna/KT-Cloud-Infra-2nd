@@ -1,0 +1,49 @@
+---
+- name: Setup LEMP stack via Ansible Galaxy roles
+  hosts: localhost
+  become: yes
+
+  vars:
+    # 사용자 정의 메세지
+    custom_message: "안녕하세요 ansible이 자동으로 생성한 PHP 페이지 입니다."
+
+    # php 설정
+    php_enable_php_fpm: true
+    php_packages_extra:
+      - php-mysql
+      - php-cli
+      - php-curl
+      - php-xml
+      - php-mbstring
+
+    # MySQL 기본설정
+    mysql_root_password: "root1234"
+    mysql_databases:
+      - name: webapp
+
+    mysql_users:
+      - name: webuser
+        host: "%"
+        password: "webpass"
+        priv: "webapp.*:ALL"
+
+  roles:
+    - geerlingguy.nginx
+    - geerlingguy.mysql
+    - geerlingguy.php
+
+  tasks:
+    - name: Deploy PHP template page
+      template:
+        src: templates/index.php.j2
+        dest: /var/www/html/index.php
+        owner: www-data
+        group: www-data
+        mode: "0644"
+
+    - name: Ensure nginx running
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
