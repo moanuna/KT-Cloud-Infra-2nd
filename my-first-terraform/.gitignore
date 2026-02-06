@@ -1,0 +1,11 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.tfstate.locl.info
+*.tfvars
+*.tfvars.*
+*/.barshrc
+*/.zprofile
+*/.zshrc
+.env
