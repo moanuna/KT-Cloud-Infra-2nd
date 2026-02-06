@@ -1,0 +1,24 @@
+---
+- name: Install PHP and extensions
+  apt:
+    name:
+     - php-fpm
+     - php-mysql
+    state: present
+    update_cache: yes
+
+- name: Ensuer PHP-FPM is running
+  service:
+    name: php{{ php_version }}-fpm
+    state: started
+    enabled: yes
+
+- name: Deploy PHP template page
+  template:
+    src: index.php.j2
+    dest: "{{ web_root }}/index.php"
+    owner: www-data
+    group: www-data
+    mode: '0644'
+  notify:
+    - Reload nginx

@@ -1,0 +1,20 @@
+server {
+    listen {{ nginx_port }};
+    root {{ web_root }};
+    index index.php index.html;
+    server_name localhost;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php{{ php_version }}-fpm.sock;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}
+
