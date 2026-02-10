@@ -33,3 +33,26 @@ variable "ami_id" {
   description = "Ubuntu 22.04 AMI ID (서울 리전)"
   default = "ami-0c9c942bd7bf113a2"
 }
+
+variable "env_configs" {
+  description = "환경별 EC2 설정"
+  type = map(object({
+    instance_type = string
+    node_count    = number
+  }))
+
+  default = {
+    dev = {
+      instance_type = "t2.micro"
+      node_count    = 1
+    }
+    staging = {
+      instance_type = "t3.small"
+      node_count    = 2
+    }
+    prod = {
+      instance_type = "t3.large"
+      node_count    = 3
+    }
+  }
+}
