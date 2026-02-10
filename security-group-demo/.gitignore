@@ -1,0 +1,4 @@
+/.terrform
+*.lock.*
+*.tfstate
+
