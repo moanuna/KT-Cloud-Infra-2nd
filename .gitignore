@@ -14,3 +14,4 @@ inventory.*
 */.zprofile
 */.zshrc
 .env
+*.lock.*
