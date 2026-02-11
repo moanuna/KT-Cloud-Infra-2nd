@@ -1,0 +1,83 @@
+{
+  "infrastructure_summary": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "deployed_at": "string",
+        "environment": "string",
+        "instance_count": "number",
+        "region": "string",
+        "security_groups": "number"
+      }
+    ],
+    "value": {
+      "deployed_at": "2026-02-11T01:40:47Z",
+      "environment": "dev",
+      "instance_count": 2,
+      "region": "yes",
+      "security_groups": 3
+    }
+  },
+  "instance_ids": {
+    "sensitive": false,
+    "type": [
+      "tuple",
+      [
+        "string",
+        "string"
+      ]
+    ],
+    "value": [
+      "i-0d5f205bd3773ff8d",
+      "i-01703dbc6c2c10b67"
+    ]
+  },
+  "public_ips": {
+    "sensitive": false,
+    "type": [
+      "tuple",
+      [
+        "string",
+        "string"
+      ]
+    ],
+    "value": [
+      "3.34.90.32",
+      "13.209.22.134"
+    ]
+  },
+  "security_group_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "sg-043c6290c8899d77f"
+  },
+  "ssh_commands": {
+    "sensitive": false,
+    "type": [
+      "tuple",
+      [
+        "string",
+        "string"
+      ]
+    ],
+    "value": [
+      "ssh -i \"~/.ssh/My first AWS key.pem\" ubuntu@3.34.90.32 # server-sg-web-0",
+      "ssh -i \"~/.ssh/My first AWS key.pem\" ubuntu@13.209.22.134 # server-sg-web-1"
+    ]
+  },
+  "web_urls": {
+    "sensitive": false,
+    "type": [
+      "tuple",
+      [
+        "string",
+        "string"
+      ]
+    ],
+    "value": [
+      "http://3.34.90.32",
+      "http://13.209.22.134"
+    ]
+  }
+}
