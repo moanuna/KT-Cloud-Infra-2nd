@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "data" {
-  bucket = "my-unique-bucket-name-2026"
+  bucket = "my-unique-bucket-name-2026-seungyeon"
 
   tags = {
     Name = "DataBucket"
