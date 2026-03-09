@@ -15,3 +15,5 @@ inventory.*
 */.zshrc
 .env
 *.lock.*
+.DS_Store
+*DS_Store
