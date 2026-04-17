@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+name: bad-pod
+spec:
+containers:
+- name: nginx
+image: nginx
+ports:
+- containerPort: 80
+- containerPort: 80 # ❌ 중복 포트 정의 (오류 발생 지점)
