@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy
+spec:
+  replicas: 2 # 2개의 Pod를 항상 유지하도록 설정
+  selector:
+    matchLabels:
+      app: nginx # 이 라벨을 가진 Pod들을 관리 대상으로 지정
+  template:
+    metadata:
+      labels:
+        app: nginx # 생성되는 Pod에 부여할 라벨
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
