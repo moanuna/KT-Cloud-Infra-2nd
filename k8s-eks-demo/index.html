@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        .container { border: 2px solid #ff9900; border-radius: 10px; padding: 20px; width: 80%; margin: 0 auto; }
+        h1 { color: #ff9900; }
+        .pod-info { background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin-top: 20px; }
+        .eks-badge { color: #ff9900; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to AWS EKS!</h1>
+        <p>이 페이지는 <span class="eks-badge">Amazon EKS</span> 클러스터에서 서비스되고 있습니다.</p>
+        <div class="pod-info">
+            <p>- 현재 응답한 Pod: <strong id="hostname">로딩 중...</strong></p>
+            <p>- 서버 시간: <span id="time"></span></p>
+        </div>
+        <p><small>EKS Deployment + NodePort Service Demo</small></p>
+    </div>
+    <script>
+        fetch('/hostname')
+            .then(response => response.text())
+            .then(data => document.getElementById('hostname').innerText = data);
+        document.getElementById('time').innerText = new Date().toLocaleString('ko-KR');
+    </script>
+</body>
+</html>
