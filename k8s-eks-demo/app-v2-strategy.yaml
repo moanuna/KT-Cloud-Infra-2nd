@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deploy-v2
+spec:
+  replicas: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2        	# 한 번에 추가로 생성할 최대 Pod 수 (2개씩 증가)
+      maxUnavailable: 1  	# 한 번에 중단 가능한 최대 Pod 수 (1개씩 교체)
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: app
+        image: nginx:1.25

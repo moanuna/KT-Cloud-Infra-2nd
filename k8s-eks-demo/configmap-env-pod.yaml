@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-env-pod
+spec:
+  containers:
+  - name: app
+    image: alpine
+    command: ["sleep", "infinity"]
+    env:
+    - name: APP_MODE
+      valueFrom:
+        configMapKeyRef:
+          name: app-config
+          key: APP_MODE
+    - name: LOG_LEVEL
+      valueFrom:
+        configMapKeyRef:
+          name: app-config
+          key: LOG_LEVEL
+    - name: MAX_CONNECTIONS
+      valueFrom:
+        configMapKeyRef:
+          name: app-config
+          key: MAX_CONNECTIONS

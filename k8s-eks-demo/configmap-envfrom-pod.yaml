@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-envfrom-pod
+spec:
+  containers:
+  - name: app
+    image: alpine
+    command: ["sleep", "infinity"]
+    envFrom:
+    - configMapRef:
+        name: app-config
