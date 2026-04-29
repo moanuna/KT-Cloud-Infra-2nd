@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: subpath-demo
+spec:
+  containers:
+  - name: app
+    image: alpine
+    command: ["sleep", "infinity"]
+    volumeMounts:
+    - name: config-vol
+      mountPath: /app/config/app.properties
+      subPath: app.properties
+    - name: config-vol
+      mountPath: /app/config/logback.xml
+      subPath: logback.xml
+  volumes:
+  - name: config-vol
+    configMap:
+      name: multi-config

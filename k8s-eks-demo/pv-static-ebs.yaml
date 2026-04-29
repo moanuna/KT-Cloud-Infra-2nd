@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-static-ebs
+  labels:
+    type: ebs
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""           # 정적 프로비저닝은 storageClassName 비워둠
+  csi:
+    driver: ebs.csi.aws.com
+    volumeHandle: vol-0abc123456789def0   # 위에서 생성한 Volume ID로 변경
+    fsType: ext4
